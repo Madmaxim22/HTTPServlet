@@ -1,8 +1,8 @@
-package service;
+package org.example.service;
 
-import exception.NotFoundException;
-import repository.PostRepository;
-import model.Post;
+import org.example.exception.NotFoundException;
+import org.example.repository.PostRepository;
+import org.example.model.Post;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
-package repository;
+package org.example.repository;
 
-import model.Post;
+import org.example.model.Post;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,8 +1,8 @@
-package servlet;
+package org.example.servlet;
 
-import controller.PostController;
-import repository.PostRepository;
-import service.PostService;
+import org.example.controller.PostController;
+import org.example.service.PostService;
+import org.example.repository.PostRepository;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +14,7 @@ public class MainServlet extends HttpServlet {
   private static final String POST = "POST";
   private static final String DELETE = "DELETE";
   private static final String PATH = "/api/posts";
+  private static final String PATH_POST_NUMBER = "/api/posts/\\d+";
 
 
   @Override
@@ -34,16 +35,16 @@ public class MainServlet extends HttpServlet {
         controller.all(resp);
         return;
       }
-      if (method.equals(GET) && path.matches(PATH + "/\\d+")) {
-        // easy way
-        controller.getById(parseLong(path), resp);
-        return;
-      }
       if (method.equals(POST) && path.equals(PATH)) {
         controller.save(req.getReader(), resp);
         return;
       }
-      if (method.equals(DELETE) && path.matches(PATH + "/\\d+")) {
+      if (method.equals(GET) && path.matches(PATH_POST_NUMBER)) {
+        // easy way
+        controller.getById(parseLong(path), resp);
+        return;
+      }
+      if (method.equals(DELETE) && path.matches(PATH_POST_NUMBER)) {
         // easy way
         controller.removeById(parseLong(path), resp);
         return;
@@ -56,7 +57,7 @@ public class MainServlet extends HttpServlet {
   }
 
   private Long parseLong(String path) {
-    return Long.parseLong(path.substring(path.lastIndexOf("/")));
+    return Long.parseLong(path.substring(path.lastIndexOf("/") + 1));
   }
 }
 
