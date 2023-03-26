@@ -1,15 +1,17 @@
 package org.example.service;
 
 import org.example.exception.NotFoundException;
-import org.example.repository.PostRepository;
+import org.example.repository.PostRepositoryStubImpl;
 import org.example.model.Post;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class PostService {
-  private final PostRepository repository;
+  private final PostRepositoryStubImpl repository;
 
-  public PostService(PostRepository repository) {
+  public PostService(PostRepositoryStubImpl repository) {
     this.repository = repository;
   }
 
