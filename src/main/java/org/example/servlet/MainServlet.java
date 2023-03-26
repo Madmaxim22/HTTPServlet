@@ -22,7 +22,7 @@ public class MainServlet extends HttpServlet {
         final var factory = new DefaultListableBeanFactory();
         final var reader = new XmlBeanDefinitionReader(factory);
         reader.loadBeanDefinitions("beans.xml");
-        controller = (PostController) factory.getBean("postController");
+        controller = factory.getBean("postController", PostController.class);
         
     }
     
